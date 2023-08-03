@@ -1,0 +1,29 @@
+@use './styles' as *;
+
+footer {
+  @include flex(row, center, center);
+  width: 100%;
+  color: $accent-color;
+  height: 20px;
+  margin-bottom: 5px;
+
+  div {
+    @include flex(row, center, center);
+    gap: 5px;
+    height: 20px;
+
+    span {
+      @include flex(row, center, center);
+      height: 20px;
+    }
+
+    a {
+      height: 100%;
+
+      svg {
+        width: 20px;
+        height: auto;
+      }
+    }
+  }
+}

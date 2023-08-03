@@ -1,1 +1,15 @@
 @use './styles' as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $main-color;
+  @include flex(column, space-between, center);
+  height: 100vh;
+  width: 100vw;
+  font-family: $font-family;
+}

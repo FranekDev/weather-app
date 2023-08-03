@@ -1,0 +1,57 @@
+@use './styles' as *;
+
+header {
+  @include flex(row, space-between, center);
+  font-family: $font-family;
+  width: 100%;
+
+  .city-data {
+    @include flex(column, center, center);
+
+    .city-name {
+      color: $secondary-color;
+      font-size: 40px;
+    }
+
+    .current-date {
+      color: $accent-color;
+      font-size: 25px;
+    }
+  }
+
+  form {
+    margin: 5px;
+    border: 3px solid $secondary-color;
+    border-radius: 20px;
+    height: auto;
+    padding: 8px 14px;
+
+    .search-container {
+      @include flex(row, center, center);
+      border-bottom: 2px solid $secondary-color;
+      margin: 2px 4px;
+
+      svg {
+        height: 15px;
+      }
+
+      input {
+        border: none;
+        padding: 0;
+        background: none;
+        color: $accent-color;
+        font-weight: bold;
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      button {
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+    }
+  }
+}
