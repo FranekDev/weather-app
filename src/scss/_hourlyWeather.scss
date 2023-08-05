@@ -1,0 +1,36 @@
+@use './styles' as *;
+
+.hourly-weather {
+  // background-color: rgb(189, 161, 110);
+  @include flex(row, center, center);
+  gap: 20px;
+  width: 100%;
+  height: auto;
+
+  div {
+    @include flex(column, center, center);
+    height: 100%;
+    color: $secondary-color;
+    // gap: 5px;
+
+    .hour-info__time {
+      font-size: 18px;
+    }
+
+    .hour-info__icon {
+      width: 50px;
+    }
+
+    .hour-info__temp {
+      @include flex(row, center, center);
+
+      span {
+        font-size: 25px;
+      }
+
+      svg {
+        width: 25px;
+      }
+    }
+  }
+}

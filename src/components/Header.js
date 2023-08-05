@@ -27,6 +27,7 @@ const Header = () => {
   const header = document.createElement('header');
 
   const blankDiv = document.createElement('div');
+  blankDiv.style.width = '229px';
   header.appendChild(blankDiv);
 
   const cityData = document.createElement('div');
@@ -48,11 +49,17 @@ const Header = () => {
   searchContainer.classList.add('search-container');
 
   const cityInput = document.createElement('input');
+  cityInput.classList.add('city-input');
   cityInput.type = 'text';
   cityInput.placeholder = 'City';
 
   const searchIcon = document.createElement('svg');
   const searchButton = document.createElement('button');
+  searchButton.classList.add('search-button');
+
+  searchButton.addEventListener('click', (e) => {
+    e.preventDefault();
+  });
 
   searchIcon.appendChild(searchIconSvg());
   searchButton.appendChild(searchIcon);

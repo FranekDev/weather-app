@@ -30,7 +30,10 @@ module.exports = {
       title: 'Weather App',
       chunks: ['main']
     }),
-    new ESLintPlugin()
+    new ESLintPlugin({
+      failOnError: false,
+      emitWarning: true
+    })
   ],
   output: {
     filename: 'main.js',

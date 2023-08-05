@@ -1,0 +1,60 @@
+@use './styles' as *;
+
+.main-weather {
+  @include flex(column, center, center);
+  width: 80vw;
+  max-width: 1000px;
+
+  .main-data {
+    @include flex(row, space-around, center);
+    width: 100%;
+  }
+
+  .additional-data {
+    @include flex(row, flex-end, center);
+    width: 100%;
+    height: 80px;
+    // background-color: red;
+  }
+}
+
+.weather-container {
+  @include flex(column, flex-end, center);
+  //   background-color: red;
+  //   width: 300px;
+  height: auto;
+
+  .day-forecast {
+    @include flex(row, center, center);
+  }
+
+  .weather-container__icon {
+    svg {
+      width: 180px;
+    }
+  }
+
+  .weather-container__temp {
+    @include flex(row, center, center);
+    height: auto;
+    margin-top: -20px;
+    // background-color: orange;
+    gap: 10px;
+
+    span {
+      font-size: 100px;
+      color: $secondary-color;
+      height: 100%;
+      //   background-color: orange;
+    }
+
+    .weatether-container__degree {
+      //   background-color: red;
+      @include flex(column, center, flex-start);
+      height: 100%;
+      svg {
+        width: 60px;
+      }
+    }
+  }
+}

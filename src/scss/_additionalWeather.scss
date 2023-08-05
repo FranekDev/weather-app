@@ -1,0 +1,69 @@
+@use './styles' as *;
+
+.day-forecast {
+  @include flex(row, center, center);
+  gap: 20px;
+
+  .day-container {
+    @include flex(column, center, center);
+    // background-color: red;
+    color: $secondary-color;
+    width: auto;
+
+    .day-container__date {
+      font-size: 30px;
+    }
+
+    .day-container__icon {
+      width: 80px;
+    }
+
+    .day-container__temp {
+      @include flex(row, center, center);
+      font-size: 45px;
+      width: 100%;
+
+      //   span {
+      //     // background-color: red;
+      //   }
+
+      .day-container__degree {
+        width: 36px;
+        // background-color: orange;
+      }
+    }
+  }
+}
+
+.additional-data {
+  .additional-info {
+    @include flex(row, space-between, center);
+    width: auto;
+    // background-color: lime;
+    gap: 40px;
+
+    .feels-like,
+    .wind-speed,
+    .humidity {
+      @include flex(row, center, center);
+      width: auto;
+
+      svg {
+        width: 50px;
+      }
+
+      span {
+        font-size: 30px;
+        color: $secondary-color;
+        width: auto;
+        // background-color: orange;
+      }
+    }
+
+    .wind-speed {
+      span {
+        width: 120px;
+      }
+    }
+  }
+}

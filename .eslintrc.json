@@ -15,6 +15,7 @@
     "linebreak-style": ["error", "windows"],
     "no-unused-vars": "warn",
     "no-console": "off",
+    "no-plusplus": "off",
     "prettier/prettier": [
       "error",
       {

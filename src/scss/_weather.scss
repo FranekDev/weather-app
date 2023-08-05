@@ -1,0 +1,10 @@
+@use './styles' as *;
+
+@use './mainWeather';
+@use './additionalWeather';
+@use './hourlyWeather';
+
+.weather-data {
+  @include flex(column, center, center);
+  gap: 10px;
+}
