@@ -7,9 +7,10 @@ import {
 } from './UI';
 
 const formatHourWeather = (weather, container) => {
+  // console.log(weather);
   const element = container;
   // element.textContent = '';
-  console.log(weather.time.split(' ')[1], weather.hourTempC);
+  // console.log(weather.time.split(' ')[1], weather.hourTempC);
   const time = weather.time.split(' ')[1];
   const temp = weather.hourTempC;
   showHourlyForecast(element, time, temp);
@@ -43,17 +44,61 @@ const App = () => {
   const weatherContainer = document.createElement('div');
   weatherContainer.classList.add('weather-container');
 
+  const cityName = document.querySelector('.city-name');
+  const currentDate = document.querySelector('.current-date');
+
   mainData.appendChild(weatherContainer);
+
+  window.addEventListener('load', async () => {
+    try {
+      const defaultCity = 'Poznan';
+      const { hourDetails, dayData } = await getWeather(defaultCity);
+
+      showCurrentWeather(weatherContainer, dayData.tempC, 'Sunny');
+
+      const {
+        name,
+        lastUpdated: time,
+        feelslikeC,
+        windKph,
+        humidity
+      } = dayData;
+
+      cityName.textContent = name;
+
+      const date = time.split(' ')[0].split('-').reverse().join('.');
+      currentDate.textContent = date;
+
+      additionalWeatherInfo(additionalData, feelslikeC, windKph, humidity);
+      hourlyWeather.textContent = '';
+      hourDetails.forEach((hour) => formatHourWeather(hour, hourlyWeather));
+    } catch (error) {
+      console.log(error);
+    }
+  });
 
   search.addEventListener('click', async () => {
     try {
-      // console.log(city.value);
       const { hourDetails, dayData } = await getWeather(city.value);
-      // hours = hourDetails;
-      // day = dayData;
-      // console.log('app', hourDetails, dayData);
-      // console.log('Day', dayData.tempC);
+      city.value = '';
+
       showCurrentWeather(weatherContainer, dayData.tempC, 'Sunny');
+      const {
+        name,
+        lastUpdated: time,
+        feelslikeC,
+        windKph,
+        humidity
+      } = dayData;
+
+      cityName.textContent = name;
+
+      const date = time.split(' ')[0].split('-').reverse().join('.');
+      currentDate.textContent = date;
+
+      additionalData.textContent = '';
+      additionalWeatherInfo(additionalData, feelslikeC, windKph, humidity);
+
       console.log('Hour', hourDetails);
       hourlyWeather.textContent = '';
       hourDetails.forEach((hour) => formatHourWeather(hour, hourlyWeather));
@@ -62,14 +107,14 @@ const App = () => {
     }
   });
 
-  showCurrentWeather(weatherContainer, '25', 'Sunny');
+  // showCurrentWeather(weatherContainer, '25', 'Sunny');
   threeDayWeather(dayForecast);
-  additionalWeatherInfo(additionalData);
-  showHourlyForecast(hourlyWeather);
+  // additionalWeatherInfo(additionalData);
+  // showHourlyForecast(hourlyWeather);
 
-  for (let i = 0; i < 24; i++) {
-    showHourlyForecast(hourlyWeather);
-  }
+  // for (let i = 0; i < 24; i++) {
+  // showHourlyForecast(hourlyWeather);
+  // }
 
   mainData.appendChild(dayForecast);
 

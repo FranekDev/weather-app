@@ -125,7 +125,7 @@ const getUserIcon = () => {
 };
 
 export const showCurrentWeather = (weatherContainer, temp, condition) => {
-  console.log(condition);
+  console.log('Condition', condition);
   const element = weatherContainer;
   // element.textContent = '';
   // const weatherContainer = document.createElement('div');
@@ -198,7 +198,12 @@ export const threeDayWeather = (container) => {
   showDayWeather(container);
 };
 
-export const additionalWeatherInfo = (container) => {
+export const additionalWeatherInfo = (
+  container,
+  feels,
+  wind,
+  humidityValue
+) => {
   const additionalInfo = document.createElement('div');
   additionalInfo.classList.add('additional-info');
 
@@ -211,7 +216,7 @@ export const additionalWeatherInfo = (container) => {
   const tempText = document.createElement('span');
   tempText.classList.add('feels-like__text');
 
-  tempText.textContent = '25';
+  tempText.textContent = feels;
   feelsLikeTemp.appendChild(getUserIcon());
   temp.appendChild(tempText);
   temp.appendChild(getDegreesIcon());
@@ -223,7 +228,7 @@ export const additionalWeatherInfo = (container) => {
   const windText = document.createElement('span');
   windText.classList.add('wind-speed__text');
 
-  windText.textContent = '25 km/h';
+  windText.textContent = `${wind} km/h`;
   windSpeed.appendChild(getWindIcon());
   windSpeed.appendChild(windText);
 
@@ -233,7 +238,7 @@ export const additionalWeatherInfo = (container) => {
   const humidityText = document.createElement('span');
   humidity.classList.add('humidity__text');
 
-  humidityText.textContent = '25%';
+  humidityText.textContent = `${humidityValue}%`;
   humidity.appendChild(getHumidityIcon());
   humidity.appendChild(humidityText);
 
