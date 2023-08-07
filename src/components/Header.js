@@ -27,7 +27,7 @@ const Header = () => {
   const header = document.createElement('header');
 
   const blankDiv = document.createElement('div');
-  blankDiv.style.width = '229px';
+  blankDiv.classList.add('ghost');
   header.appendChild(blankDiv);
 
   const cityData = document.createElement('div');
@@ -35,11 +35,9 @@ const Header = () => {
 
   const cityName = document.createElement('span');
   cityName.classList.add('city-name');
-  cityName.textContent = 'Gaj Wielki';
 
   const date = document.createElement('span');
   date.classList.add('current-date');
-  date.textContent = '03.08.2023';
 
   cityData.appendChild(cityName);
   cityData.appendChild(date);

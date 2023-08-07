@@ -1,28 +1,31 @@
 import getWeather from './weather';
 import {
   showCurrentWeather,
-  threeDayWeather,
   additionalWeatherInfo,
-  showHourlyForecast
+  showHourlyForecast,
+  showDayWeather
 } from './UI';
 
 const formatHourWeather = (weather, container) => {
-  // console.log(weather);
   const element = container;
-  // element.textContent = '';
-  // console.log(weather.time.split(' ')[1], weather.hourTempC);
-  const time = weather.time.split(' ')[1];
-  const temp = weather.hourTempC;
-  showHourlyForecast(element, time, temp);
+
+  const { time: forecastTime, hourTempC: temp, info } = weather;
+  const formatedTime = forecastTime.split(' ')[1];
+
+  showHourlyForecast(element, formatedTime, temp, info);
+};
+
+const showDaysForecast = (container, data) => {
+  const { date, avgTempC, dayInfo } = data;
+  const dayDate = date.split(' ')[0].split('-').reverse().join('.').slice(0, 5);
+
+  showDayWeather(container, dayDate, avgTempC, dayInfo);
 };
 
 const App = () => {
   const main = document.createElement('main');
   const city = document.querySelector('.city-input');
   const search = document.querySelector('.search-button');
-
-  // Wykonuje szybciej niz pobierze dane z weather api
-  // console.log('Hour', hours, 'Day', day.tempC);
 
   const weatherData = document.createElement('div');
   weatherData.classList.add('weather-data');
@@ -52,7 +55,12 @@ const App = () => {
   window.addEventListener('load', async () => {
     try {
       const defaultCity = 'Poznan';
-      const { hourDetails, dayData } = await getWeather(defaultCity);
+      const { hourDetails, dayData, processedDays } = await getWeather(
+        defaultCity
+      );
+
+      dayForecast.textContent = '';
+      processedDays.forEach((day) => showDaysForecast(dayForecast, day));
 
       showCurrentWeather(weatherContainer, dayData.tempC, 'Sunny');
 
@@ -79,10 +87,16 @@ const App = () => {
 
   search.addEventListener('click', async () => {
     try {
-      const { hourDetails, dayData } = await getWeather(city.value);
+      const { hourDetails, dayData, processedDays } = await getWeather(
+        city.value
+      );
       city.value = '';
 
+      dayForecast.textContent = '';
+      processedDays.forEach((day) => showDaysForecast(dayForecast, day));
+
       showCurrentWeather(weatherContainer, dayData.tempC, 'Sunny');
+
       const {
         name,
         lastUpdated: time,
@@ -99,22 +113,12 @@ const App = () => {
       additionalData.textContent = '';
       additionalWeatherInfo(additionalData, feelslikeC, windKph, humidity);
 
-      console.log('Hour', hourDetails);
       hourlyWeather.textContent = '';
       hourDetails.forEach((hour) => formatHourWeather(hour, hourlyWeather));
     } catch (error) {
       console.log(error);
     }
   });
-
-  // showCurrentWeather(weatherContainer, '25', 'Sunny');
-  threeDayWeather(dayForecast);
-  // additionalWeatherInfo(additionalData);
-  // showHourlyForecast(hourlyWeather);
-
-  // for (let i = 0; i < 24; i++) {
-  // showHourlyForecast(hourlyWeather);
-  // }
 
   mainData.appendChild(dayForecast);
 

@@ -38,22 +38,54 @@
     @include flex(row, center, center);
     height: auto;
     margin-top: -20px;
-    // background-color: orange;
+    // background-color: lime;
     gap: 10px;
+    height: 80px;
 
     span {
       font-size: 100px;
       color: $secondary-color;
       height: 100%;
-      //   background-color: orange;
+      // background-color: orange;
     }
 
     .weatether-container__degree {
-      //   background-color: red;
+      // background-color: red;
       @include flex(column, center, flex-start);
       height: 100%;
       svg {
         width: 60px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .main-weather {
+    @include flex(column, center, center);
+
+    .main-data {
+      @include flex(column, center, center);
+      gap: 20px;
+
+      .weather-container {
+        gap: 10px;
+        .weather-container__icon {
+          svg {
+            width: 140px;
+          }
+        }
+        .weather-container__temp {
+          span {
+            font-size: 3em;
+          }
+
+          .weatether-container__degree {
+            svg {
+              width: 45px;
+            }
+          }
+        }
       }
     }
   }

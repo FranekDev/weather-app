@@ -12,18 +12,21 @@ function processData(data) {
     humidity
   } = current;
 
-  // console.log('Current', {
-  //   tempC,
-  //   tempF,
-  //   windKph,
-  //   windMph,
-  //   feelslikeC,
-  //   feelslikeF,
-  //   lastUpdated,
-  //   humidity
-  // });
-
   const { name } = location;
+
+  const [...days] = forecast.forecastday;
+
+  const processedDays = days.map((singleDay) => {
+    const {
+      date,
+      day: {
+        condition: { text: dayInfo },
+        avgtemp_c: avgTempC,
+        avgtemp_f: avgTempF
+      }
+    } = singleDay;
+    return { date, dayInfo, avgTempC, avgTempF };
+  });
 
   const {
     hour: [...hourData]
@@ -42,7 +45,7 @@ function processData(data) {
     hourDetails.push({ time, hourTempC, hourTempF, info });
   });
 
-  console.log('HourDetails weather fn', hourDetails);
+  // console.log('HourDetails weather fn', hourDetails);
 
   const dayData = {
     tempC,
@@ -55,19 +58,21 @@ function processData(data) {
     humidity,
     name
   };
-  console.log('Day weather fn', dayData);
+  // console.log('Day weather fn', dayData);
 
-  return { hourDetails, dayData };
+  return { hourDetails, dayData, processedDays };
 }
 
 async function getWeather(location) {
   try {
     const response = await fetch(
-      `https://api.weatherapi.com/v1/forecast.json?key=55c87ea085b642b0900113721230208&q=${location}`,
+      `https://api.weatherapi.com/v1/forecast.json?key=55c87ea085b642b0900113721230208&q=${location}&days=3`,
       { mode: 'cors' }
     );
-    const { hourDetails, dayData } = processData(await response.json());
-    return { hourDetails, dayData };
+    const { hourDetails, dayData, processedDays } = processData(
+      await response.json()
+    );
+    return { hourDetails, dayData, processedDays };
   } catch (error) {
     console.log(error);
   }

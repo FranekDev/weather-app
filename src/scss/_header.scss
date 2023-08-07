@@ -5,6 +5,10 @@ header {
   font-family: $font-family;
   width: 100%;
 
+  .ghost {
+    width: 229px;
+  }
+
   .city-data {
     @include flex(column, center, center);
 
@@ -51,6 +55,39 @@ header {
         background: none;
         border: none;
         cursor: pointer;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  header {
+    @include flex(row, space-between, center);
+    .ghost {
+      width: 120px;
+      // height: 2px;
+      // background-color: red;
+    }
+    .city-data {
+      .city-name {
+        font-size: 35px;
+      }
+
+      .current-date {
+        font-size: 20px;
+      }
+    }
+
+    form {
+      width: 130px;
+      padding: 7px 10px;
+
+      .search-container {
+        @include flex(row, center, center);
+
+        input {
+          width: 100%;
+        }
       }
     }
   }

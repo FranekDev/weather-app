@@ -77,3 +77,37 @@
     }
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .additional-data {
+    width: auto;
+    // margin: 0;
+    @include flex(row, center, center);
+    // background-color: red;
+    .additional-info {
+      width: 100%;
+      @include flex(row, center, center);
+      .feels-like,
+      .wind-speed,
+      .humidity {
+        gap: 10px;
+
+        svg {
+          width: 40px;
+        }
+
+        span {
+          font-size: 20px;
+          color: $secondary-color;
+          width: auto;
+        }
+      }
+
+      .wind-speed {
+        svg {
+          width: 40px;
+        }
+      }
+    }
+  }
+}
