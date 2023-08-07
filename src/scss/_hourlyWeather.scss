@@ -4,8 +4,13 @@
   // background-color: rgb(189, 161, 110);
   @include flex(row, center, center);
   gap: 20px;
-  width: 100%;
+  max-width: 1000px;
   height: auto;
+  overflow-x: scroll;
+  padding: 5px 10px;
+
+  // ogarnac i usunac
+  // padding-left: 1300px;
 
   div {
     @include flex(column, center, center);

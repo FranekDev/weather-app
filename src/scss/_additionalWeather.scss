@@ -47,6 +47,7 @@
     .humidity {
       @include flex(row, center, center);
       width: auto;
+      gap: 10px;
 
       svg {
         width: 50px;
@@ -57,6 +58,15 @@
         color: $secondary-color;
         width: auto;
         // background-color: orange;
+      }
+    }
+
+    .feels-like {
+      .feels-like__temp {
+        @include flex(row, center, center);
+        svg {
+          width: 30px;
+        }
       }
     }
 

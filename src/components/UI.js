@@ -1,10 +1,10 @@
-const getWeatherIcon = (weather) => {
+const getWeatherIcon = (weather = 'te') => {
   const iconSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   const iconPath = document.createElementNS(
     'http://www.w3.org/2000/svg',
     'path'
   );
-  console.log(weather);
+  console.log('Weather Icon', weather);
 
   iconSvg.setAttribute('fill', '#837970');
   iconSvg.setAttribute('viewBox', '0 0 24 24');
@@ -124,10 +124,13 @@ const getUserIcon = () => {
   return iconSvg;
 };
 
-export const showCurrentWeather = (container, temp, condition) => {
+export const showCurrentWeather = (weatherContainer, temp, condition) => {
   console.log(condition);
-  const weatherContainer = document.createElement('div');
-  weatherContainer.classList.add('weather-container');
+  const element = weatherContainer;
+  // element.textContent = '';
+  // const weatherContainer = document.createElement('div');
+  // weatherContainer.classList.add('weather-container');
+  element.textContent = '';
 
   const weatherIcon = document.createElement('div');
   weatherIcon.classList.add('weather-container__icon');
@@ -150,7 +153,7 @@ export const showCurrentWeather = (container, temp, condition) => {
   weatherContainer.appendChild(weatherIcon);
   weatherContainer.appendChild(tempInfo);
 
-  container.appendChild(weatherContainer);
+  // container.appendChild(weatherContainer);
 };
 
 const showDayWeather = (container) => {
@@ -208,9 +211,11 @@ export const additionalWeatherInfo = (container) => {
   const tempText = document.createElement('span');
   tempText.classList.add('feels-like__text');
 
-  tempText.textContent = '25oC';
+  tempText.textContent = '25';
   feelsLikeTemp.appendChild(getUserIcon());
-  feelsLikeTemp.appendChild(tempText);
+  temp.appendChild(tempText);
+  temp.appendChild(getDegreesIcon());
+  feelsLikeTemp.appendChild(temp);
 
   const windSpeed = document.createElement('div');
   windSpeed.classList.add('wind-speed');
@@ -239,12 +244,17 @@ export const additionalWeatherInfo = (container) => {
   container.appendChild(additionalInfo);
 };
 
-export const showHourlyForecast = (container) => {
+export const showHourlyForecast = (
+  container,
+  timeText = '12:34',
+  tempText = '25'
+) => {
   const hourInfo = document.createElement('div');
 
   const time = document.createElement('span');
   time.classList.add('hour-info__time');
-  time.textContent = '12:20';
+  // time.textContent = '12:20';
+  time.textContent = timeText;
 
   const weatherIcon = document.createElement('div');
   weatherIcon.classList.add('hour-info__icon');
@@ -254,7 +264,8 @@ export const showHourlyForecast = (container) => {
   temp.classList.add('hour-info__temp');
 
   const tempValue = document.createElement('span');
-  tempValue.textContent = '25';
+  // tempValue.textContent = '25';
+  tempValue.textContent = tempText;
 
   temp.appendChild(tempValue);
   temp.appendChild(getDegreesIcon());
