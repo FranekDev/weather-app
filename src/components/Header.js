@@ -72,29 +72,52 @@ const Header = () => {
   mobileSearchTrigger.appendChild(searchIconSvg());
 
   mobileSearchTrigger.addEventListener('click', () => {
+    const main = document.querySelector('main');
     if (forum.classList.contains('active')) {
       setTimeout(() => {
         forum.style.display = 'none';
       }, 125);
       forum.classList.remove('active');
       forum.classList.toggle('hide');
+      main.classList.toggle('show');
+      main.classList.remove('hide');
+      cityData.classList.remove('hide');
+      cityData.classList.toggle('show');
     } else {
       setTimeout(() => {
         forum.style.display = 'block';
       }, 125);
       forum.classList.remove('hide');
       forum.classList.toggle('active');
+      main.classList.toggle('hide');
+      main.classList.remove('show');
+      cityData.classList.remove('show');
+      cityData.classList.toggle('hide');
     }
 
     if (window.screen.width <= 600) {
       searchButton.addEventListener('click', () => {
+        console.log('click');
         if (forum.classList.contains('active')) {
-          forum.classList.toggle('hide');
           setTimeout(() => {
             forum.style.display = 'none';
           }, 125);
+          forum.classList.toggle('hide');
+          forum.classList.remove('active');
+          main.classList.toggle('show');
+          main.classList.remove('hide');
+          cityData.classList.remove('hide');
+          cityData.classList.toggle('show');
         } else {
+          setTimeout(() => {
+            forum.style.display = 'block';
+          }, 125);
+          forum.classList.remove('hide');
           forum.classList.toggle('active');
+          main.classList.toggle('hide');
+          main.classList.remove('show');
+          cityData.classList.remove('show');
+          cityData.classList.toggle('hide');
         }
       });
     }

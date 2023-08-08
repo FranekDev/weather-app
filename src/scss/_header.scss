@@ -90,7 +90,6 @@ header {
       height: 30px;
       @include flex(row, center, center);
       margin-right: 15px;
-      -webkit-tap-highlight-color: transparent;
     }
 
     form.active {
@@ -104,6 +103,7 @@ header {
 
     form {
       display: none;
+      z-index: 1;
       width: auto;
       height: auto;
       padding: 7px 10px;

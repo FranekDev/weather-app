@@ -41,6 +41,9 @@ const App = () => {
   const additionalData = document.createElement('div');
   additionalData.classList.add('additional-data');
 
+  const hoursForecast = document.createElement('div');
+  hoursForecast.classList.add('hours-forecast');
+
   const hourlyWeather = document.createElement('div');
   hourlyWeather.classList.add('hourly-weather');
 
@@ -86,10 +89,11 @@ const App = () => {
   });
 
   search.addEventListener('click', async () => {
-    console.log(city.value);
+    // console.log(city.value);
     try {
+      const cityValue = city.value.trim().length > 0 ? city.value : 'Poznan';
       const { hourDetails, dayData, processedDays } = await getWeather(
-        city.value
+        cityValue
       );
       city.value = '';
 
@@ -127,7 +131,8 @@ const App = () => {
   mainWeather.appendChild(additionalData);
 
   weatherData.appendChild(mainWeather);
-  weatherData.appendChild(hourlyWeather);
+  hoursForecast.appendChild(hourlyWeather);
+  weatherData.appendChild(hoursForecast);
 
   main.appendChild(weatherData);
 

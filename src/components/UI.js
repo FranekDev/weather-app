@@ -1,3 +1,7 @@
+// const iconsPaths = new Map();
+// iconsPaths.set('a' || 'b', 'test');
+// console.log(iconsPaths.get('b'));
+
 const getWeatherIcon = (weather) => {
   const iconSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   const iconPath = document.createElementNS(
