@@ -40,3 +40,31 @@
     }
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .hourly-weather {
+    width: 90vw;
+    // background-color: red;
+    gap: 20px;
+
+    div {
+      .hour-info__time {
+        font-size: 16px;
+      }
+
+      .hour-info__icon {
+        width: 40px;
+      }
+
+      .hour-info__temp {
+        span {
+          font-size: 22px;
+        }
+
+        svg {
+          width: 22px;
+        }
+      }
+    }
+  }
+}

@@ -8,3 +8,9 @@
   @include flex(column, center, center);
   gap: 10px;
 }
+
+@media only screen and (max-width: 600px) {
+  .weather-data {
+    gap: 30px;
+  }
+}

@@ -79,6 +79,32 @@
 }
 
 @media only screen and (max-width: 600px) {
+  .day-forecast {
+    gap: 20px;
+
+    .day-container {
+      width: auto;
+
+      .day-container__date {
+        font-size: 20px;
+      }
+
+      .day-container__icon {
+        width: 65px;
+      }
+
+      .day-container__temp {
+        font-size: 35px;
+        height: auto;
+
+        .day-container__degree {
+          @include flex(column, center, center);
+          width: 33px;
+        }
+      }
+    }
+  }
+
   .additional-data {
     width: auto;
     // margin: 0;
@@ -87,10 +113,12 @@
     .additional-info {
       width: 100%;
       @include flex(row, center, center);
+      gap: 20px;
       .feels-like,
       .wind-speed,
       .humidity {
-        gap: 10px;
+        height: 40px;
+        gap: 8px;
 
         svg {
           width: 40px;
@@ -103,9 +131,17 @@
         }
       }
 
+      .feels-like {
+        .feels-like__temp {
+          svg {
+            width: 22px;
+          }
+        }
+      }
+
       .wind-speed {
-        svg {
-          width: 40px;
+        .wind-speed__text {
+          width: 80px;
         }
       }
     }

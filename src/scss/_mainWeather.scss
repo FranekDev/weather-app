@@ -20,7 +20,7 @@
 
 .weather-container {
   @include flex(column, flex-end, center);
-  //   background-color: red;
+  // background-color: red;
   //   width: 300px;
   height: auto;
 
@@ -66,7 +66,7 @@
 
     .main-data {
       @include flex(column, center, center);
-      gap: 20px;
+      gap: 30px;
 
       .weather-container {
         gap: 10px;
@@ -76,8 +76,9 @@
           }
         }
         .weather-container__temp {
+          height: auto;
           span {
-            font-size: 3em;
+            font-size: 50px;
           }
 
           .weatether-container__degree {

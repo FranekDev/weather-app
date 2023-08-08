@@ -64,7 +64,7 @@ header {
   header {
     @include flex(row, space-between, center);
     .ghost {
-      width: 120px;
+      width: 53px;
       // height: 2px;
       // background-color: red;
     }
@@ -79,14 +79,28 @@ header {
     }
 
     form {
-      width: 130px;
+      width: auto;
       padding: 7px 10px;
+      border: none;
 
       .search-container {
         @include flex(row, center, center);
+        height: 25px;
+        border: none;
 
         input {
           width: 100%;
+          display: none;
+        }
+
+        .search-button {
+          margin: 0;
+          svg {
+            svg {
+              width: 25px;
+              height: auto;
+            }
+          }
         }
       }
     }
