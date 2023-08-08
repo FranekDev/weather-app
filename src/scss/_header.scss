@@ -95,11 +95,11 @@ header {
 
     form.active {
       display: inline;
-      animation: showSearch 0.3s ease-in-out;
+      animation: showSearch 0.15s ease-in-out;
     }
 
     form.hide {
-      animation: hideSearch 0.3s ease-in-out;
+      animation: hideSearch 0.15s ease-in-out;
     }
 
     form {

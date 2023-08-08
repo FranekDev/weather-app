@@ -75,13 +75,13 @@ const Header = () => {
     if (forum.classList.contains('active')) {
       setTimeout(() => {
         forum.style.display = 'none';
-      }, 200);
+      }, 125);
       forum.classList.remove('active');
       forum.classList.toggle('hide');
     } else {
       setTimeout(() => {
         forum.style.display = 'block';
-      }, 200);
+      }, 125);
       forum.classList.remove('hide');
       forum.classList.toggle('active');
     }
@@ -92,7 +92,7 @@ const Header = () => {
           forum.classList.toggle('hide');
           setTimeout(() => {
             forum.style.display = 'none';
-          }, 200);
+          }, 125);
         } else {
           forum.classList.toggle('active');
         }
