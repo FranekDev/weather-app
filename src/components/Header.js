@@ -67,8 +67,42 @@ const Header = () => {
 
   forum.appendChild(searchContainer);
 
+  const mobileSearchTrigger = document.createElement('a');
+  mobileSearchTrigger.classList.add('mobile-search-trigger');
+  mobileSearchTrigger.appendChild(searchIconSvg());
+
+  mobileSearchTrigger.addEventListener('click', () => {
+    if (forum.classList.contains('active')) {
+      setTimeout(() => {
+        forum.style.display = 'none';
+      }, 200);
+      forum.classList.remove('active');
+      forum.classList.toggle('hide');
+    } else {
+      setTimeout(() => {
+        forum.style.display = 'block';
+      }, 200);
+      forum.classList.remove('hide');
+      forum.classList.toggle('active');
+    }
+
+    if (window.screen.width <= 600) {
+      searchButton.addEventListener('click', () => {
+        if (forum.classList.contains('active')) {
+          forum.classList.toggle('hide');
+          setTimeout(() => {
+            forum.style.display = 'none';
+          }, 200);
+        } else {
+          forum.classList.toggle('active');
+        }
+      });
+    }
+  });
+
   header.appendChild(cityData);
   header.appendChild(forum);
+  header.appendChild(mobileSearchTrigger);
 
   document.body.appendChild(header);
 };

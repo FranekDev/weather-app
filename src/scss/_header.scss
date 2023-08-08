@@ -23,6 +23,10 @@ header {
     }
   }
 
+  .mobile-search-trigger {
+    display: none;
+  }
+
   form {
     margin: 5px;
     border: 3px solid $secondary-color;
@@ -64,9 +68,10 @@ header {
   header {
     @include flex(row, space-between, center);
     .ghost {
-      width: 53px;
+      width: 45px;
       // height: 2px;
       // background-color: red;
+      // display: none;
     }
     .city-data {
       .city-name {
@@ -78,31 +83,101 @@ header {
       }
     }
 
+    .mobile-search-trigger {
+      display: block;
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      @include flex(row, center, center);
+      margin-right: 15px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    form.active {
+      display: inline;
+      animation: showSearch 0.3s ease-in-out;
+    }
+
+    form.hide {
+      animation: hideSearch 0.3s ease-in-out;
+    }
+
     form {
+      display: none;
       width: auto;
+      height: auto;
       padding: 7px 10px;
-      border: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: $main-color;
+      box-shadow: 0 0 30px $main-color;
+      font-family: $secondary-font;
+      padding: 15px;
 
       .search-container {
-        @include flex(row, center, center);
-        height: 25px;
+        @include flex(column, center, center);
+        height: 100%;
+        // width: 100%;
         border: none;
+        padding: 10px 15px;
+        gap: 35px;
 
         input {
-          width: 100%;
-          display: none;
+          background-color: $main-color;
+          border: none;
+          color: $accent-color;
+          padding: 5px;
+          border-bottom: 2px solid $secondary-color;
+          font-family: $secondary-font;
+        }
+
+        .search-button::before {
+          content: 'SEARCH';
+          font-family: $secondary-font;
+          font-weight: 600;
         }
 
         .search-button {
           margin: 0;
+          background-color: $secondary-color;
+          font-size: 15px;
+          padding: 5px 10px;
+          border-radius: 10px;
+          cursor: pointer;
           svg {
             svg {
               width: 25px;
               height: auto;
+              display: none;
             }
+          }
+
+          &:hover {
+            box-shadow: 0 0 8px $secondary-color;
+            transition: 0.1s ease-in-out;
           }
         }
       }
     }
+  }
+}
+
+@keyframes showSearch {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hideSearch {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }

@@ -86,6 +86,7 @@ const App = () => {
   });
 
   search.addEventListener('click', async () => {
+    console.log(city.value);
     try {
       const { hourDetails, dayData, processedDays } = await getWeather(
         city.value
