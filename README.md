@@ -9,13 +9,7 @@
 ### Mobile UI
 
 <p align="center">
-    <img src="./src/images/mobileUI.png" alt="Mobile UI" width="auto" height="400px"/>
-    &nbsp
-    &nbsp
-    &nbsp
-    &nbsp
-    &nbsp
-    &nbsp
+    <img src="./src/images/mobileUI.png" alt="Mobile UI" width="auto" height="400px">
     <img src="./src/images/mobileSearch.png" alt="Mobile UI" width="auto" height="400px"/>
 </p>
 

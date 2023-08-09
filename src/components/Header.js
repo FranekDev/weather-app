@@ -8,7 +8,7 @@ const searchIconSvg = () => {
   iconSvg.setAttribute('fill', '#515151');
   iconSvg.setAttribute('viewBox', '0 0 24 24');
   iconSvg.setAttribute('stroke', '');
-  iconSvg.classList.add('trash_icon');
+  iconSvg.classList.add('icon');
 
   iconPath.setAttribute(
     'd',
@@ -71,56 +71,53 @@ const Header = () => {
   mobileSearchTrigger.classList.add('mobile-search-trigger');
   mobileSearchTrigger.appendChild(searchIconSvg());
 
-  mobileSearchTrigger.addEventListener('click', () => {
-    const main = document.querySelector('main');
-    if (forum.classList.contains('active')) {
-      setTimeout(() => {
-        forum.style.display = 'none';
-      }, 125);
-      forum.classList.remove('active');
-      forum.classList.toggle('hide');
-      main.classList.toggle('show');
-      main.classList.remove('hide');
-      cityData.classList.remove('hide');
-      cityData.classList.toggle('show');
-    } else {
+  const hide = (form, main, city) => {
+    form.classList.remove('active');
+    form.classList.toggle('hide');
+    main.classList.toggle('show');
+    main.classList.remove('hide');
+    city.classList.remove('hide');
+    city.classList.toggle('show');
+  };
+
+  const show = (form, main, city) => {
+    form.classList.remove('hide');
+    form.classList.toggle('active');
+    main.classList.toggle('hide');
+    main.classList.remove('show');
+    city.classList.remove('show');
+    city.classList.toggle('hide');
+  };
+
+  let isHidden = true;
+
+  const animateForm = (form, main, city) => {
+    if (isHidden) {
       setTimeout(() => {
         forum.style.display = 'block';
       }, 125);
-      forum.classList.remove('hide');
-      forum.classList.toggle('active');
-      main.classList.toggle('hide');
-      main.classList.remove('show');
-      cityData.classList.remove('show');
-      cityData.classList.toggle('hide');
+      show(form, main, city);
+    } else {
+      setTimeout(() => {
+        forum.style.display = 'none';
+      }, 125);
+      hide(form, main, city);
     }
+  };
 
-    if (window.screen.width <= 600) {
-      searchButton.addEventListener('click', () => {
-        if (forum.classList.contains('active')) {
-          setTimeout(() => {
-            forum.style.display = 'none';
-          }, 125);
-          forum.classList.toggle('hide');
-          forum.classList.remove('active');
-          main.classList.toggle('show');
-          main.classList.remove('hide');
-          cityData.classList.remove('hide');
-          cityData.classList.toggle('show');
-        } else {
-          setTimeout(() => {
-            forum.style.display = 'block';
-          }, 125);
-          forum.classList.remove('hide');
-          forum.classList.toggle('active');
-          main.classList.toggle('hide');
-          main.classList.remove('show');
-          cityData.classList.remove('show');
-          cityData.classList.toggle('hide');
-        }
-      });
-    }
+  mobileSearchTrigger.addEventListener('click', () => {
+    const main = document.querySelector('main');
+    animateForm(forum, main, cityData);
+    isHidden = !isHidden;
   });
+
+  if (window.screen.width <= 600) {
+    searchButton.addEventListener('click', () => {
+      const main = document.querySelector('main');
+      animateForm(forum, main, cityData);
+      isHidden = !isHidden;
+    });
+  }
 
   header.appendChild(cityData);
   header.appendChild(forum);
