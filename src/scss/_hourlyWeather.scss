@@ -14,12 +14,10 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    // border-radius: 1px;
     background-color: $secondary-color;
     outline: 1px solid $secondary-color;
   }
   .hourly-weather {
-    // background-color: rgb(189, 161, 110);
     @include flex(row, center, center);
     gap: 20px;
     height: auto;
@@ -31,7 +29,6 @@
       height: 100%;
       color: $secondary-color;
       width: 70px;
-      // gap: 5px;
 
       .hour-info__time {
         font-size: 18px;
@@ -56,10 +53,9 @@
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 650px) {
   .hourly-weather {
     width: 90vw;
-    // background-color: red;
     gap: 20px;
 
     div {

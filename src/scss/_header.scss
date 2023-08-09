@@ -64,14 +64,11 @@ header {
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 650px) {
   header {
     @include flex(row, space-between, center);
     .ghost {
       width: 45px;
-      // height: 2px;
-      // background-color: red;
-      // display: none;
     }
     .city-data {
       .city-name {
@@ -119,7 +116,6 @@ header {
       .search-container {
         @include flex(column, center, center);
         height: 100%;
-        // width: 100%;
         border: none;
         padding: 10px 15px;
         gap: 35px;
@@ -155,7 +151,7 @@ header {
           }
 
           &:hover {
-            box-shadow: 0 0 8px $secondary-color;
+            box-shadow: 0 0 15px 3px rgb(54, 49, 45);
             transition: 0.1s ease-in-out;
           }
         }

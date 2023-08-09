@@ -14,16 +14,12 @@
     @include flex(row, flex-end, center);
     width: 100%;
     height: 80px;
-    // background-color: red;
   }
 }
 
 .weather-container {
   @include flex(column, flex-end, center);
-  // background-color: red;
-  //   width: 300px;
   height: auto;
-  // gap: 10px;
 
   .day-forecast {
     @include flex(row, center, center);
@@ -38,8 +34,6 @@
   .weather-container__temp {
     @include flex(row, center, center);
     height: auto;
-    // margin-top: -20px;
-    // background-color: lime;
     gap: 10px;
     height: 80px;
 
@@ -47,11 +41,9 @@
       font-size: 100px;
       color: $secondary-color;
       height: 100%;
-      // background-color: orange;
     }
 
     .weatether-container__degree {
-      // background-color: red;
       @include flex(column, center, flex-start);
       height: 100%;
       svg {
@@ -61,7 +53,7 @@
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 650px) {
   .main-weather {
     @include flex(column, center, center);
 
@@ -87,6 +79,28 @@
               width: 45px;
             }
           }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 900px) {
+  .weather-container {
+    .weather-container__icon {
+      svg {
+        width: 130px;
+      }
+    }
+    .weather-container__temp {
+      height: auto;
+      span {
+        font-size: 60px;
+      }
+
+      .weatether-container__degree {
+        svg {
+          width: 45px;
         }
       }
     }

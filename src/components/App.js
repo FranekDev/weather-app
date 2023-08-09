@@ -81,7 +81,7 @@ const App = () => {
       currentDate.textContent = date;
 
       additionalWeatherInfo(additionalData, feelslikeC, windKph, humidity);
-      console.log(hourDetails);
+
       hourlyWeather.textContent = '';
       hourDetails.forEach((hour) => formatHourWeather(hour, hourlyWeather));
     } catch (error) {
