@@ -23,6 +23,7 @@
   // background-color: red;
   //   width: 300px;
   height: auto;
+  // gap: 10px;
 
   .day-forecast {
     @include flex(row, center, center);
@@ -30,14 +31,14 @@
 
   .weather-container__icon {
     svg {
-      width: 180px;
+      width: 170px;
     }
   }
 
   .weather-container__temp {
     @include flex(row, center, center);
     height: auto;
-    margin-top: -20px;
+    // margin-top: -20px;
     // background-color: lime;
     gap: 10px;
     height: 80px;

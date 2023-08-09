@@ -97,7 +97,6 @@ const Header = () => {
 
     if (window.screen.width <= 600) {
       searchButton.addEventListener('click', () => {
-        console.log('click');
         if (forum.classList.contains('active')) {
           setTimeout(() => {
             forum.style.display = 'none';
