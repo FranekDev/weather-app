@@ -8,8 +8,6 @@
 
 ### Mobile UI
 
-<!-- ![Mobile UI](./src/images/mobileUI.png) -->
-
 <p align="center">
     <img src="./src/images/mobileUI.png" alt="Mobile UI" width="auto" height="400px"/>
     &nbsp

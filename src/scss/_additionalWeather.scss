@@ -118,7 +118,8 @@
       .wind-speed,
       .humidity {
         height: 40px;
-        gap: 8px;
+        gap: 4px;
+        // background-color: red;
 
         svg {
           width: 40px;
@@ -140,8 +141,13 @@
       }
 
       .wind-speed {
+        // background-color: red;
         .wind-speed__text {
+          // width: fit-content;
+          // block-size: fit-content;
           width: auto;
+          white-space: nowrap;
+          // background-color: lime;
         }
       }
     }
