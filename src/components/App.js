@@ -64,8 +64,13 @@ const App = () => {
 
       dayForecast.textContent = '';
       processedDays.forEach((day) => showDaysForecast(dayForecast, day));
+      console.log(dayData.isDay);
 
-      showCurrentWeather(weatherContainer, dayData.tempC, 'Sunny');
+      showCurrentWeather(
+        weatherContainer,
+        dayData.tempC,
+        dayData.currentWeatherType
+      );
 
       const {
         name,
@@ -101,7 +106,11 @@ const App = () => {
       dayForecast.textContent = '';
       processedDays.forEach((day) => showDaysForecast(dayForecast, day));
 
-      showCurrentWeather(weatherContainer, dayData.tempC, 'Sunny');
+      showCurrentWeather(
+        weatherContainer,
+        dayData.tempC,
+        dayData.currentWeatherType
+      );
 
       const {
         name,

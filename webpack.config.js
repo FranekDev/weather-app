@@ -28,6 +28,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       title: 'Weather App',
+      favicon: 'dist/icon.png',
       chunks: ['main']
     }),
     new ESLintPlugin({

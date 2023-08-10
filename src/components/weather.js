@@ -1,5 +1,6 @@
 function processData(data) {
   const { current, forecast, location } = data;
+  // console.log(current);
 
   const {
     temp_c: tempC,
@@ -9,7 +10,9 @@ function processData(data) {
     feelslike_c: feelslikeC,
     feelslike_f: feelslikeF,
     last_updated: lastUpdated,
-    humidity
+    humidity,
+    condition: { text: currentWeatherType },
+    is_day: isDay
   } = current;
 
   const { name } = location;
@@ -45,8 +48,6 @@ function processData(data) {
     hourDetails.push({ time, hourTempC, hourTempF, info });
   });
 
-  // console.log('HourDetails weather fn', hourDetails);
-
   const dayData = {
     tempC,
     tempF,
@@ -56,9 +57,10 @@ function processData(data) {
     windMph,
     lastUpdated,
     humidity,
-    name
+    name,
+    currentWeatherType,
+    isDay
   };
-  // console.log('Day weather fn', dayData);
 
   return { hourDetails, dayData, processedDays };
 }
