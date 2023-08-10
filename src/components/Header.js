@@ -28,7 +28,7 @@ const Header = () => {
   cityInput.type = 'text';
   cityInput.placeholder = 'City';
 
-  const searchIcon = document.createElement('svg');
+  const searchIcon = document.createElement('div');
   const searchButton = document.createElement('button');
 
   const searchIconColor = '#515151';
