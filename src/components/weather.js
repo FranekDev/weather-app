@@ -1,6 +1,5 @@
 function processData(data) {
   const { current, forecast, location } = data;
-  // console.log(current);
 
   const {
     temp_c: tempC,
@@ -26,9 +25,10 @@ function processData(data) {
         condition: { text: dayInfo },
         avgtemp_c: avgTempC,
         avgtemp_f: avgTempF
-      }
+      },
+      astro: { is_sun_up: isSunUp }
     } = singleDay;
-    return { date, dayInfo, avgTempC, avgTempF };
+    return { date, dayInfo, avgTempC, avgTempF, isSunUp };
   });
 
   const {
@@ -42,10 +42,11 @@ function processData(data) {
       time,
       temp_c: hourTempC,
       temp_f: hourTempF,
-      condition: { text: info }
+      condition: { text: info },
+      is_day: isHourDay
     } = hour;
 
-    hourDetails.push({ time, hourTempC, hourTempF, info });
+    hourDetails.push({ time, hourTempC, hourTempF, info, isHourDay });
   });
 
   const dayData = {

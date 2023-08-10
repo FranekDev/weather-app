@@ -33,14 +33,19 @@ export const getSvgIcon = (path, color = '#837970') => {
   return iconSvg;
 };
 
-export const showCurrentWeather = (weatherContainer, temp, condition) => {
+export const showCurrentWeather = (
+  weatherContainer,
+  temp,
+  condition,
+  isDay
+) => {
   const element = weatherContainer;
   element.textContent = '';
 
   const weatherIcon = document.createElement('div');
   weatherIcon.classList.add('weather-container__icon');
 
-  const path = getWeatherIconPath(condition);
+  const path = getWeatherIconPath(condition, isDay);
   weatherIcon.appendChild(getSvgIcon(path));
 
   const tempInfo = document.createElement('div');
@@ -149,7 +154,8 @@ export const showHourlyForecast = (
   container,
   timeText,
   tempText,
-  weatherType
+  weatherType,
+  isHourDay
 ) => {
   const hourInfo = document.createElement('div');
 
@@ -160,7 +166,7 @@ export const showHourlyForecast = (
   const weatherIcon = document.createElement('div');
   weatherIcon.classList.add('hour-info__icon');
 
-  const path = getWeatherIconPath(weatherType);
+  const path = getWeatherIconPath(weatherType, isHourDay);
   weatherIcon.appendChild(getSvgIcon(path));
 
   const temp = document.createElement('div');

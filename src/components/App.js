@@ -9,17 +9,17 @@ import {
 const formatHourWeather = (weather, container) => {
   const element = container;
 
-  const { time: forecastTime, hourTempC: temp, info } = weather;
+  const { time: forecastTime, hourTempC: temp, info, isHourDay } = weather;
   const formatedTime = forecastTime.split(' ')[1];
 
-  showHourlyForecast(element, formatedTime, temp, info);
+  showHourlyForecast(element, formatedTime, temp, info, isHourDay);
 };
 
 const showDaysForecast = (container, data) => {
-  const { date, avgTempC, dayInfo } = data;
+  const { date, avgTempC, dayInfo, isSunUp } = data;
   const dayDate = date.split(' ')[0].split('-').reverse().join('.').slice(0, 5);
 
-  showDayWeather(container, dayDate, avgTempC, dayInfo);
+  showDayWeather(container, dayDate, avgTempC, dayInfo, isSunUp);
 };
 
 const App = () => {
@@ -55,84 +55,46 @@ const App = () => {
 
   mainData.appendChild(weatherContainer);
 
-  window.addEventListener('load', async () => {
+  const showWeather = (hours, day, days) => {
+    days.forEach((singleDay) => showDaysForecast(dayForecast, singleDay));
+
+    const { tempC, currentWeatherType, isDay } = day;
+
+    showCurrentWeather(weatherContainer, tempC, currentWeatherType, isDay);
+
+    const { name, lastUpdated: time, feelslikeC, windKph, humidity } = day;
+    cityName.textContent = name;
+
+    const date = time.split(' ')[0].split('-').reverse().join('.');
+    currentDate.textContent = date;
+
+    additionalWeatherInfo(additionalData, feelslikeC, windKph, humidity);
+
+    hours.forEach((hour) => formatHourWeather(hour, hourlyWeather));
+  };
+
+  const fetchWeather = async (cityToFetch = 'Poznan') => {
     try {
-      const defaultCity = 'Poznan';
       const { hourDetails, dayData, processedDays } = await getWeather(
-        defaultCity
+        cityToFetch
       );
 
-      dayForecast.textContent = '';
-      processedDays.forEach((day) => showDaysForecast(dayForecast, day));
-      console.log(dayData.isDay);
-
-      showCurrentWeather(
-        weatherContainer,
-        dayData.tempC,
-        dayData.currentWeatherType
-      );
-
-      const {
-        name,
-        lastUpdated: time,
-        feelslikeC,
-        windKph,
-        humidity
-      } = dayData;
-
-      cityName.textContent = name;
-
-      const date = time.split(' ')[0].split('-').reverse().join('.');
-      currentDate.textContent = date;
-
-      additionalWeatherInfo(additionalData, feelslikeC, windKph, humidity);
-
-      hourlyWeather.textContent = '';
-      hourDetails.forEach((hour) => formatHourWeather(hour, hourlyWeather));
-    } catch (error) {
-      console.log(error);
-    }
-  });
-
-  search.addEventListener('click', async () => {
-    // console.log(city.value);
-    try {
-      const cityValue = city.value.trim().length > 0 ? city.value : 'Poznan';
-      const { hourDetails, dayData, processedDays } = await getWeather(
-        cityValue
-      );
       city.value = '';
-
       dayForecast.textContent = '';
-      processedDays.forEach((day) => showDaysForecast(dayForecast, day));
-
-      showCurrentWeather(
-        weatherContainer,
-        dayData.tempC,
-        dayData.currentWeatherType
-      );
-
-      const {
-        name,
-        lastUpdated: time,
-        feelslikeC,
-        windKph,
-        humidity
-      } = dayData;
-
-      cityName.textContent = name;
-
-      const date = time.split(' ')[0].split('-').reverse().join('.');
-      currentDate.textContent = date;
-
       additionalData.textContent = '';
-      additionalWeatherInfo(additionalData, feelslikeC, windKph, humidity);
-
       hourlyWeather.textContent = '';
-      hourDetails.forEach((hour) => formatHourWeather(hour, hourlyWeather));
+
+      showWeather(hourDetails, dayData, processedDays);
     } catch (error) {
       console.log(error);
     }
+  };
+
+  window.addEventListener('load', () => fetchWeather());
+
+  search.addEventListener('click', () => {
+    const cityValue = city.value.trim().length > 0 ? city.value : 'Poznan';
+    fetchWeather(cityValue);
   });
 
   mainData.appendChild(dayForecast);
