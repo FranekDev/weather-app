@@ -87,6 +87,34 @@ header {
       height: 30px;
       @include flex(row, center, center);
       margin-right: 15px;
+      padding: 4px;
+      background-color: none;
+    }
+
+    .mobile-search-trigger.showBg {
+      animation: showBg 0.25s ease-in-out forwards;
+    }
+    @keyframes showBg {
+      from {
+        // border-radius: 2px;
+      }
+      to {
+        background-color: #353230;
+        border-radius: 8px;
+      }
+    }
+
+    .mobile-search-trigger.hideBg {
+      animation: hideBg 0.25s ease-in-out forwards;
+    }
+    @keyframes hideBg {
+      from {
+        background-color: #353230;
+        border-radius: 8px;
+      }
+      to {
+        background-color: none;
+      }
     }
 
     form.active {

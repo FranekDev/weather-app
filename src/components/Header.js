@@ -57,6 +57,8 @@ const Header = () => {
     main.classList.remove('hide');
     city.classList.remove('hide');
     city.classList.toggle('show');
+    mobileSearchTrigger.classList.remove('showBg');
+    mobileSearchTrigger.classList.add('hideBg');
   };
 
   const show = (form, main, city) => {
@@ -66,6 +68,8 @@ const Header = () => {
     main.classList.remove('show');
     city.classList.remove('show');
     city.classList.toggle('hide');
+    mobileSearchTrigger.classList.add('showBg');
+    mobileSearchTrigger.classList.remove('hideBg');
   };
 
   let isHidden = true;
